@@ -4,10 +4,10 @@
            
 
         int minCostClimbingStairs(vector<int>& cost) {
-            int n= cost.size();
-            if(cost.size()==1){return cost[0];}
+            
+           
         
-            int x=n-1;
+            int x=cost.size()-1;
              if(x==0){return cost[0];}
             
                 int prev2=cost[0];
