@@ -1,25 +1,29 @@
-class Solution {
-public: 
-// spidey
-        int tcost(int x,vector<int> &cost,vector<int> &dp){
-            if(x==0){return cost[0];}
-            if(x==1){return cost[1];}
-            if(dp[x]!=-1){return dp[x];}
+    class Solution {
+    public: 
+    // spidey
+            int tcost(int x,vector<int> &cost){
+                if(x==0){return cost[0];}
+            
+                int prev2=cost[0];
+                int prev=cost[1];
+            
+                for(int i=2; i<=x; i++)
+            {int curr=cost[i]+min(prev,prev2);
+            prev2=prev;
+            prev=curr;}
+            return  min(prev,prev2);
+            
 
-           dp[x]=cost[x]+min(tcost(x-1,cost,dp),tcost(x-2,cost,dp));
-            return dp[x];
+            }
 
-        }
-
-    int minCostClimbingStairs(vector<int>& cost) {
-        int n= cost.size();
-        if(cost.size()==1){return cost[0];}
-        vector<int> dp(n,-1);
-        int x=n-1;
-
-        int ans= min(tcost(x,cost,dp),tcost((x-1),cost,dp));
-        return ans;
-      
+        int minCostClimbingStairs(vector<int>& cost) {
+            int n= cost.size();
+            if(cost.size()==1){return cost[0];}
         
-    }
-};
+            int x=n-1;
+
+            return tcost(x,cost);
+        
+            
+        }
+    };
